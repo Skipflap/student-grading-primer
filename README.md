@@ -223,9 +223,22 @@ docker compose up --build
 At any time after Part 2, you can run the public tests:
 
 ```bash
-docker compose --profile debug up --build automark
+docker compose --profile debug up --build automark --remove-orphans
 ```
 
 You must see **`SANITY CHECK PASSED`**. These tests check: backend health, database connectivity, list of students, `/stats` response shape, and that creating a student persists.
 
 These are only basic tests, you must ensure you add proper error handling/validation according to the spec for full marks. A private test suite will be run on the deadline.
+
+## What to show your tutor
+
+In your week 3 lab, you must do the following:
+1. Pull and merge in the latest repo changes (autotest.py file)
+
+#### Docker and python
+2. Run the autotest command (added --remove-orphans flag to cleanup old containers) and show this to your tutor
+
+3. Explain the edge case you addressed and your implementation which you should've documented in `EDGE_CASE.md`
+
+#### Git
+4. Show your pull request on github from your private repo to your tutor
