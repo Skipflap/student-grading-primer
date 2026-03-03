@@ -9,8 +9,6 @@ This primer extends upon basic knowledge of **Docker**, **Git/GitHub**, and **Py
 
 **Marks:** Part 1 (Docker) 2%, Part 2 (Backend) 1.5%, Part 3 (Git) 1.5% - **total 5%**
 
-
-
 ---
 
 ## Pre-requisite
@@ -76,7 +74,6 @@ The **`backend`** service is currently a stub. You need to complete it so the ba
 
 The **`frontend`** service is currently a stub. Complete it so the frontend builds and runs correctly on the port `8080`.
 
-
 <details>
    <summary>Hint #1:</summary>
 
@@ -84,8 +81,8 @@ The **`frontend`** service is currently a stub. Complete it so the frontend buil
 </details>
 
 ### 3. Mounting the volume
-1. Add the **pre-seed script** (`./db/init.sql`) so the database is initialised on the first-build of the container. This should be mounted to `/docker-entrypoint-initdb.d/`(PostgreSQL container's initialisation directory)
 
+1. Add the **pre-seed script** (`./db/init.sql`) so the database is initialised on the first-build of the container. This should be mounted to `/docker-entrypoint-initdb.d/`(PostgreSQL container's initialisation directory)
 2. Add a **volume** so the database’s data persists when the container is recreated.
 
 <details>
@@ -101,17 +98,21 @@ To make data persistent, we need to create a named volume for the service and ma
 </details>
 
 ### 4. Sanity check
+
 To run the app, execute this command:
+
 ```bash
 docker compose up --build
 ```
+
 Check the links in `running the application` work, and that the data persists when creating a student and restarting the application
 
 Note: It is normal to see errors in the backend at this stage as the function stubs have not been implemented. On build however after adding the init.sql script you should see this line:
+
 ```docker
 db-1        | /usr/local/bin/docker-entrypoint.sh: running /docker-entrypoint-initdb.d/init.sql
 ```
-If you do not see this, you may need to delete the container and re-build as it may have already mounted to the initialisation directory on a prior buid.
+
 
 ---
 
@@ -214,7 +215,7 @@ docker compose up --build
 - Backend: http://localhost:5000  
 - Health: http://localhost:5000/  
 - Students: http://localhost:5000/students  
-- Stats: http://localhost:5000/stats  
+- Stats: http://localhost:5000/stats
 
 ---
 
@@ -223,9 +224,22 @@ docker compose up --build
 At any time after Part 2, you can run the public tests:
 
 ```bash
-docker compose --profile debug up --build automark
+docker compose --profile debug up --build automark --remove-orphans
 ```
 
 You must see **`SANITY CHECK PASSED`**. These tests check: backend health, database connectivity, list of students, `/stats` response shape, and that creating a student persists.
 
 These are only basic tests, you must ensure you add proper error handling/validation according to the spec for full marks. A private test suite will be run on the deadline.
+
+## What to show your tutor
+
+In your week 3 lab, you must do the following:
+1. Pull and merge in the latest repo changes (autotest.py file)
+
+#### Docker and python
+2. Run the autotest command (added --remove-orphans flag to cleanup old containers) and show this to your tutor
+
+3. Explain the edge case you addressed and your implementation which you should've documented in `EDGE_CASE.md`
+
+#### Git
+4. Show your pull request on github from your private repo to your tutor

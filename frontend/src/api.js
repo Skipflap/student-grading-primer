@@ -2,7 +2,13 @@ const API_BASE = import.meta.env.VITE_API_URL ?? 'http://localhost:5000';
 
 export const getStudents = async () => {
   const res = await fetch(`${API_BASE}/students`);
-  if (!res.ok) throw new Error('Failed to load students');
+  if (!res.ok) throw new Error('Failed to fetch students');
+  return res.json();
+}
+
+export const getStats = async () => {
+  const res = await fetch(`${API_BASE}/stats`);
+  if (!res.ok) throw new Error('Failed to load stats');
   return res.json();
 }
 

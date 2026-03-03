@@ -1,2 +1,3 @@
-no-commit/
+.env
+**/.env
 node_modules/
